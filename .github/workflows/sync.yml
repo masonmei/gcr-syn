@@ -26,5 +26,9 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          while read line
+          do
+            echo $line;
+            target=`echo $line |awk -F '/' '"masonmei/"$1"-"$2'`
+            echo "docker tag $line $target"
+          done < list
