@@ -30,6 +30,7 @@ jobs:
           do
             echo $line;
             target=`echo $line |awk -F "/" '{print "masonmei/"$2"-"$3}'`
+            docker pull $line
             docker tag $line $target
             docker push $target
           done < list
