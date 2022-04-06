@@ -29,6 +29,7 @@ jobs:
           while read line
           do
             echo $line;
-            target=`echo $line |awk -F '/' '"masonmei/"$1"-"$2'`
-            echo "docker tag $line $target"
+            target=`echo $line |awk -F "/" '{print "masonmei/"$2"-"$3}'`
+            docker tag $line $target
+            docker push $target
           done < list
